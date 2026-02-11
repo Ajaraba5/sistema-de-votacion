@@ -3,71 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sistema de Votacion</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        body {  
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+            font-family: Arial, sans-serif;
             margin: 0;
         }
         .login-container {
-            background: #fff;
+            background: white;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             width: 300px;
-        }
-        h2 {
             text-align: center;
-            margin-bottom: 20px;
+            transition: all 0.3s ease;
         }
-        .input-group {
-            margin: 15px 0;
+        .login-container:hover {
+            transform: scale(1.02);
         }
-        .input-group label {
-            margin-bottom: 5px;
-            display: block;
-        }
-        .input-group input {
+        input[type="text"], input[type="password"] {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ddd;
+            margin: 10px 0;
+            border: 1px solid #ccc;
             border-radius: 5px;
+            transition: border 0.3s;
         }
-        .btn {
-            background-color: #28a745;
-            color: #fff;
+        input[type="text:focus"], input[type="password:focus"] {
+            border: 1px solid #66afe9;
+        }
+        button {
+            background: #66afe9;
+            color: white;
             border: none;
             padding: 10px;
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
-            margin-top: 10px;
+            transition: background 0.3s;
         }
-        .btn:hover {
-            background-color: #218838;
+        button:hover {
+            background: #5a9bd4;
+        }
+        .emoji {
+            font-size: 1.5em;
+        }
+        .credentials {
+            margin-top: 20px;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h2>Login to Sistema de Votacion</h2>
-        <form action="#" method="post">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn">Login</button>
+        <h2><span class="emoji">🔒</span> Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="checkbox" id="passwordToggle"> <label for="passwordToggle">Show Password</label>
+            <button type="submit">Login</button>
+            <p class="credentials">Demo Credentials: <strong>Username:</strong> demo <strong>Password:</strong> demo123</p>
         </form>
     </div>
+    <script>
+        document.getElementById('passwordToggle').addEventListener('change', function() {
+            const passwordField = document.getElementById('password');
+            if (this.checked) {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        });
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            alert(`Logged in as: ${username}`);
+        });
+    </script>
 </body>
 </html>
